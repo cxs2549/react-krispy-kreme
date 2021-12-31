@@ -1,8 +1,11 @@
+import { Fragment } from "react"
+import Header from "./components/Header/Header"
+
 const App = () => {
   return (
-    <div>
-      donuts
-    </div>
+    <Fragment>
+      <Header />
+    </Fragment>
   )
 }
 
