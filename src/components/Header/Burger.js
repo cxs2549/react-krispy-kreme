@@ -3,6 +3,7 @@ import Hamburger from 'hamburger-react'
 import { useState, useRef } from 'react'
 import useOnClickOutside from 'use-onclickoutside'
 import { motion, AnimatePresence } from 'framer-motion'
+import {AiOutlineClose} from 'react-icons/ai'
 
 const links = [
 	'doughnuts',
@@ -21,14 +22,17 @@ const StyledBurger = styled.div.attrs({ className: '' })`
         min-width: 50px;
     }
 `
-const Menu = () => {
+const Menu = ({toggle}) => {
 	return (
 		<motion.div
 			initial={{ x: '-100vw', opacity: 0 }}
 			animate={{ x: 0, opacity: 1 }}
 			exit={{ x: '-100vw', opacity: 0 }}
-			className="fixed top-20 left-0 w-full h-screen bg-white max-w-[80%] z-10 text-sm"
+			className="fixed top-0 left-0 w-full h-screen bg-white max-w-[75%] md:max-w-[50%] z-10 text-sm"
 		>
+			<div className="h-20 flex items-center px-3">
+				<AiOutlineClose size={28} onClick={() => toggle(false)} />
+			</div>
 			<div className=" flex items-center h-14 px-4 uppercase  text-sm gap-2 bg-[#F5F7F9] font-bold">
 				<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
 					<g fill="none" fill-rule="evenodd">
@@ -81,7 +85,7 @@ const Tint = () => {
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 0.6 }}
 			exit={{ opacity: 0 }}
-			className="fixed bg-black opacity-50 top-20 left-0 w-full h-screen pointer-events-none"
+			className="fixed bg-black opacity-50 top-0 left-0 w-full h-screen pointer-events-none"
 		/>
 	)
 }
@@ -93,7 +97,7 @@ const Burger = () => {
 	return (
 		<StyledBurger ref={ref}>
 			<Hamburger size={28} toggle={setIsOpen} toggled={isOpen} />
-			<AnimatePresence>{isOpen && <Menu />}</AnimatePresence>
+			<AnimatePresence>{isOpen && <Menu toggle={setIsOpen} />}</AnimatePresence>
 			<AnimatePresence>{isOpen && <Tint />}</AnimatePresence>
 		</StyledBurger>
 	)
