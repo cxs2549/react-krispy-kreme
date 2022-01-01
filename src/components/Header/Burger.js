@@ -16,7 +16,7 @@ const links = [
 	'find a shop'
 ]
 
-const StyledBurger = styled.div.attrs({ className: '' })`
+const StyledBurger = styled.div.attrs({ className: 'xl:hidden' })`
     /* font-family: 'Secular One', sans-serif; */
     svg {
         min-width: 50px;
